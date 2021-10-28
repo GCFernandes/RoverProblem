@@ -22,12 +22,25 @@ This will run the program in interactive mode, it will expect the inputs from th
 
 If you wish the program to run using inputs from a file, pass the file path and name as the first argument.
 
-This example shows how to do this using the provided *input.txt* example file:
+This example shows how to do this using the provided *validInput.txt* example file, located in the *examples* directory:
 
 ```
-java RoverProblem input.txt
+java RoverProblem example/validInput.txt
 ```
 
+The input format should be the same as in the *validInput.txt* file:
+
+```
+5 5 
+1 2 N 
+LMLMLMLMM
+3 3 E 
+MMRMMRMRRM
+```
+
+The first indicate the plateau dimensions, then any number of rovers can be entered, one line indicating the starting position and heading, and one line indicating the sequence of instructions. The program stops reading the input and prints the output after receiving an empty line ou detecting an end of file.
+
+There are other two example input files present in the *examples* folder: *collision.txt* which inputs a case where two rovers collide and *invalidPosition.txt* which inputs a case where a rover moves outside of the plateau.
 ## Implementation details
 
 I considered that collisions between rovers should not be allowed to happen.
