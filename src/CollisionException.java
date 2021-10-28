@@ -17,8 +17,8 @@ public class CollisionException extends RuntimeException {
 	 */
 	public CollisionException(Position position1, Position position2, Plateau plateau) {
 		super("Collision between positions");
-		this.position1 = position2;
-		this.position1 = position2;
+		this.position1 = position1;
+		this.position2 = position2;
 		this.plateau = plateau;
 	}
 	

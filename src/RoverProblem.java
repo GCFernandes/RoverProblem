@@ -20,6 +20,7 @@ public class RoverProblem {
 	 */
 	public static void main(String[] args) {
 		Scanner scanner = null;
+		boolean errorFlag = false;
 		if(args.length != 0) {
 				File file = new File(args[0]);
 			try {
@@ -40,11 +41,13 @@ public class RoverProblem {
 	    while (scanner.hasNextLine()) {
 	    	data = scanner.nextLine();
 	    	if (data == ""){
+	    		errorFlag = true;
 	    		break;
 	    	}
 	    	
 	    	Rover rover = createRover(data, plateau);
 	    	if(rover == null) {
+	    		errorFlag = true;
 	    		break;
 	    	}
 	    	plateau.insertRover(rover);
@@ -53,11 +56,15 @@ public class RoverProblem {
 	    	
 	    	boolean instructionsCompleted = sendInstructions(rover, plateau, data);
 	    	if(!instructionsCompleted) {
+	    		errorFlag = true;
 	    		break;
 	    	}
 	    }
 	    scanner.close();
-    	System.out.print(plateau);
+    	
+	    if(!errorFlag) {
+	    	System.out.print(plateau);
+	    }
 	}
 	
 	/**
@@ -112,12 +119,12 @@ public class RoverProblem {
 		}
 		catch(InvalidPositionException e) {
 			System.out.print("Invalid rover position detected:\n");
-			System.out.print("Position: " + e.getPosition().toString() + "Plateau: " + e.getPlateau().toString());
+			System.out.print("Position: " + e.getPosition().toString() + "\nPlateau max position: X=" + e.getPlateau().getSizeX() + " Y=" + e.getPlateau().getSizeY());
 			return false;
 		}
 		catch(CollisionException e) {
 			System.out.print("Rover Collision detected:\n");
-			System.out.print("Position 1: " + e.getPosition1().toString() + "Position 2 " + e.getPosition2().toString() + "Plateau: " + e.getPlateau().toString());
+			System.out.print("Position 1: " + e.getPosition1().toString() + "\nPosition 2: " + e.getPosition2().toString() + "\nPlateau:\n" + e.getPlateau().toString());
 			return false;
 		}
 		catch(RuntimeException e) {
