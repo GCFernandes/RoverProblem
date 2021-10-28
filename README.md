@@ -29,3 +29,7 @@ java RoverProblem input.txt
 ```
 
 ## Implementation details
+
+I considered that collisions between rovers should not be allowed to happen.
+
+I implemented this problem representing the rovers as objects with x and y coordinates, and a plateau being a list of rovers. To check for a possible collision the program goes through the list of rovers in a plateau to check for equal coordinates. This solution is more efficient memory wise than representing the entire plateau as a matrix containing all possible positions, both occupied and not. On the other hand this solution has a worse performance time than the matrix solution to check for the collisions.
